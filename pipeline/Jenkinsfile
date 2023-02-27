@@ -90,7 +90,7 @@ pipeline {
             //sh "docker build -t '$DOCKER_IMAGE':'$DOCKER_TAG' --build-arg=BUILDKIT_INLINE_CACHE=1 --cache-from '$DOCKER_IMAGE':'$DOCKER_TAG' ."
             sh 'ls -la'
             sh 'pwd'
-            sh ls -la '${PWD}'
+            sh 'ls -la ${PWD}'
             sh 'ls -la ./docker/'
             sh "docker build -f ./docker/Dockerfile -t '$DOCKER_IMAGE':'$DOCKER_TAG' --build-arg='COMMIT_SHA=$GIT_COMMIT' --build-arg='VERSION=$APP_VERSION' --build-arg='BUILDKIT_INLINE_CACHE=1' --cache-from '$DOCKER_IMAGE':'$DOCKER_TAG' ./docker/"
             //sh 'rm -rfv ./*'
