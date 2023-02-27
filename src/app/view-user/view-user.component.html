@@ -1,0 +1,39 @@
+<div class="container mt-5" *ngIf="isLoaded">
+    <div class="card w-100">
+        <div class="row">
+            <div class="col-6 p-3 pl-5">
+                <img class="card-img-top avatar" src="./../assets/avatar.png" alt="profilePic">
+            </div>
+            <div class="col-6 mt-5">
+                <button type="button delete-button" class="btn btn-danger update-button" (click)="deleteUser()">Delete</button>
+                <button type="button update-button" class="btn btn-primary update-button" (click)="updateProfile()">Update</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="card-title">Name:</h5>
+                    <hr>
+                    <h5 class="card-title">EmailId:</h5>
+                    <hr>
+                    <div class="age">
+                        <h5 class="card-title">Age:</h5>
+
+                    </div>
+                </div>
+
+                <div class="details col-6">
+                    <h5 class="card-title text-center">{{user.name}}</h5>
+                    <hr>
+                    <h5 class="card-title text-center">{{user.email}}</h5>
+                    <hr>
+                    <div class="age">
+                        <h5 class="card-title text-center">{{user.age}}</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

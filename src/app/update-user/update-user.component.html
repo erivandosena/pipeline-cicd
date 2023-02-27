@@ -1,0 +1,37 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <div class="card" *ngIf="isLoaded">
+        <div class="container">
+          <div class="card-body">
+            <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" *ngIf="profileForm">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" value={{user.name}} class="form-control" id="name" formControlName="name" aria-describedby="name">
+              </div>
+              <div class="form-group">
+                <label for="emaild">EmailId:</label>
+                <input type="text" value={{user.email}} class="form-control" id="emailId" formControlName="emailId">
+              </div>
+              <div class="form-group">
+                <label for="blogContent">Age:</label>
+                <input type="text" value={{user.age}} class="form-control" id="age" formControlName="age" aria-describedby="age">
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-6 col-sm-2 col-md-2 col-lg-3 mr-5">
+                  <button type="submit" my-directive class="btn btn-primary green">Submit</button>
+                </div>
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4 mr-5">
+                  <button type="reset" my-directive class="btn btn-danger red" bgColor="light red">Reset</button>
+                </div>
+              </div>
+              <br>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
