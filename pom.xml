@@ -5,10 +5,11 @@
     
     <modelVersion>4.0.0</modelVersion>
     
-    <artifactId>spring-boot-runtime</artifactId>
+    <artifactId>${env.APP_NAME}</artifactId>
     <!-- <name>spring-boot-runtime</name> -->
     <name>${env.APP_NAME}</name>
     <packaging>jar</packaging>
+    
     <description>Project sample for Spring Boot Runtime</description>
     <url>https://hello-world-test.unilab.edu.br/</url>
 
