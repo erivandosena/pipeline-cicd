@@ -15,7 +15,6 @@
     <groupId>com.baeldung</groupId>
     <artifactId>parent-modules</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>parent-modules</name>
     <packaging>war</packaging>
     <name>app-sample</name>
     <description>App Sample</description>
