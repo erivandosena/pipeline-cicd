@@ -71,7 +71,7 @@ pipeline {
         echo "2. Build Application"
         //container('maven') { 
         //sh "mvn clean package -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
-        //sh "mvn clean verify"
+        sh "mvn clean verify"
         sh "mvn clean install"
         sh "mvn package -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
         //sh "mvn clean package -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
