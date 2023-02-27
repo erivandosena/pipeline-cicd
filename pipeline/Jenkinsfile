@@ -45,7 +45,6 @@ pipeline {
     // geralmente não é necessário ao obter o Jenkinsfile do Git SCM no Pipeline / Multibranch Pipeline, isso está implícito
     stage ('Checkout') {
       steps {
-        sh 'rm -rfv ./*'
         milestone(ordinal: null, label: "Milestone: Checkout")
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/erivandosena/pipeline-cicd']]])
         //container('git') {
