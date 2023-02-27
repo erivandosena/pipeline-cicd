@@ -2,7 +2,7 @@
 
 ### Pipeliene CI/CD com Aplicação exemplo em Java Spring Boot com Angular, MySQL, Docker em Kubernetes
 
-Projeto em [Angular CLI](https://github.com/angular/angular-cli) versão 7.0.7.
+Projeto em [Angular CLI](https://github.com/angular/angular-cli) v. 7.0.7.
 
 ## Running unit tests
 
