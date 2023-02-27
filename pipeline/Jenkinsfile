@@ -63,15 +63,6 @@ pipeline {
           workspace = "$env.WORKSPACE"
         }
         // execute alguns comandos shell para configurar as coisas
-        /*
-        sh '''
-          for x in /etc/build.d/*.sh; do
-            if [ -r "$x" ]; then
-              source $x;
-            fi;
-          done;
-        '''
-        */
         sh 'printenv'
       }
     }
