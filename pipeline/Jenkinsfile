@@ -77,7 +77,7 @@ pipeline {
         //sh 'mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:tree -f spring-boot/'
         sh "mvn package install -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/"
         //sh "mvn archetype:generate -DgroupId=br.edu.unilab.app -DartifactId=${APP_NAME} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
-        sh 'scp -pqr target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104/tmp/'
+        sh 'scp -pqr spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104/tmp/'
       }
     }
     stage('Build Docker Image') {
