@@ -1,6 +1,6 @@
 # Crud Sample
 
-### Pipeliene CI/CD com Aplicação exemplo em Java Spring Boot com Angular, MySQL, Docker em Kubernetes
+### Pipeliene CI/CD Jenkins com Aplicação exemplo em Java Spring Boot com Angular, Docker em Kubernetes
 
 Projeto em [Angular CLI](https://github.com/angular/angular-cli) v. 7.0.7.
 
