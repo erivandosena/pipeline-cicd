@@ -55,10 +55,9 @@ pipeline {
         }
         // executar alguns comandos shell para configurar outros detalhes
         sh 'ls -la .'
-        sh 'apt-get update && apt-get install -y openssh-client openssh-server'
+        sh 'apt-get update && apt-get install -y openssh-client openssh-server rsync'
         // setup ssh inbound-agent
         sh 'cat /etc/resolv.conf'
-        sh 'hostname -I'
         sh 'sed -i "s/#Port 22/Port 22/g" /etc/ssh/sshd_config'
         sh 'sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config'
         sh 'ssh-keygen -t rsa -b 4096 -C "inbound-agent@noreply.unilab.edu.br" -f ~/.ssh/id_rsa -q -N ""'
