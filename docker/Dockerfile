@@ -1,4 +1,4 @@
-# Dockerfile para Spring Boot
+# Dockerfile para Angular
 
 FROM nginx:alpine
 COPY dist/crud/ /usr/share/nginx/html
