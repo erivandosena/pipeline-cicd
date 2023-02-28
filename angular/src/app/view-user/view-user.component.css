@@ -1,0 +1,21 @@
+.card {
+    width: 30rem;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.update-button {
+    font-size: 1.3rem;
+    float: right;
+    margin-top: 3px;
+    margin-right: 90px;
+    font: 1.3rem 'Aldrich', cursive;
+}
+
+.card-title {
+    font: 1.3rem 'Aldrich', cursive;
+}

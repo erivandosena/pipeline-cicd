@@ -1,0 +1,31 @@
+<br><br><br>
+<div class="container" *ngIf = "isLoaded">
+  <div class="row"  *ngIf = "isLoaded">
+    <div class="mb-3 col-md-3 col-sm-6 col-lg-3 d-flex align-items-stretch card-unique " *ngFor="let unique of allUsers" (click)="btnClick(unique)">
+      <div class="card text-white bg-dark">
+        <div class="blog-grid4">
+          <a>
+            <img class="card-img-top cover-image" src="./../assets/avatar.png" alt="Card image cap">
+          </a>
+          <hr>
+          <div class="card-body">
+            <div class="card-body-top">
+              <h5 class="gadget-name">{{unique.name}}</h5>
+              <br>
+              <h3 class="gadget-name">{{unique.email}}</h3>
+              <br>
+              <h1 class="blog-name text-white">Age: {{unique.age}}</h1>
+            </div>
+            <br>
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+</div>
