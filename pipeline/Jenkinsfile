@@ -55,14 +55,15 @@ pipeline {
         }
         // executar alguns comandos shell para configurar outros detalhes
         sh 'ls -la .'
-        sh 'apt-get update && apt-get install -y openssh-client openssh-server rsync'
+        //sh 'apt-get update && apt-get install -y openssh-client openssh-server rsync'
+        sh 'apt-get update && apt-get install -y rsync'
         // setup ssh inbound-agent
         sh 'cat /etc/resolv.conf'
-        sh 'sed -i "s/#Port 22/Port 22/g" /etc/ssh/sshd_config'
-        sh 'sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config'
-        sh 'ssh-keygen -t rsa -b 4096 -C "inbound-agent@noreply.unilab.edu.br" -f ~/.ssh/id_rsa -q -N ""'
-        sh 'ls -la pipeline/.ssh-inbound-agent/'
+        //sh 'sed -i "s/#Port 22/Port 22/g" /etc/ssh/sshd_config'
+        //sh 'sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config'
+        //sh 'ssh-keygen -t rsa -b 4096 -C "inbound-agent@noreply.unilab.edu.br" -f ~/.ssh/id_rsa -q -N ""'
         sh '[ -d ~/.ssh ] || mkdir -p ~/.ssh && cp -rfv pipeline/.ssh-inbound-agent/id_rsa.pub ~/.ssh/ && chmod -R 600 ~/.ssh'
+        sh 'ls -la ~/.ssh/'
         sh 'cat ~/.ssh/id_rsa.pub'
         sh 'printenv'
       }
@@ -86,9 +87,10 @@ pipeline {
         sh 'mvn package install -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/'
         //sh "mvn archetype:generate -DgroupId=br.edu.unilab.app -DartifactId=${APP_NAME} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
         //sh 'scp -pqr spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
-        sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
         sshagent (credentials: ['ssh-inbound-agent']) {
-          sh 'rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
+          //sh 'rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
+          sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
+          sh 'rsync -e "ssh -p 22" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
         }
       }
     }
