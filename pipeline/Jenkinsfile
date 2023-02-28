@@ -25,7 +25,7 @@ pipeline {
     cron('H 10 * * 1-5')  // executar às 10: XX:XX da manhã todos os dias da semana, ou seja. algum horário fixo de trabalho entre 10-11am
   }
   environment {
-    APP_NAME = "sample-app"
+    APP_NAME = "app-sample"
     APP_VERSION = "1.0.0"
     APP_NAMESPACE = "app-pipeline-cicd"
     //DOCKER_TAG = "$GIT_COMMIT" // ou "$GIT_BRANCH"
@@ -76,7 +76,7 @@ pipeline {
         //sh 'mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:tree -f spring-boot/'
         sh "mvn package install -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/"
         //sh "mvn archetype:generate -DgroupId=br.edu.unilab.app -DartifactId=${APP_NAME} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
-        sh 'scp -pqr target/app-sample-1.0.0-SNAPSHOT.jar root@10.130.1.104/tmp/'
+        sh 'scp -pqr target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104/tmp/'
       }
     }
     stage('Build Docker Image') {
