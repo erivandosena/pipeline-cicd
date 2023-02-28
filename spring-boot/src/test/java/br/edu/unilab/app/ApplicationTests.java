@@ -12,7 +12,7 @@ import br.edu.unilab.app.Application;
 public class ApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void contextLoads(ApplicationContext context) {
 		assertThat(context).isNotNull();
 	}
 
