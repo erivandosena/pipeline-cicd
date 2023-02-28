@@ -3,5 +3,5 @@
 FROM openjdk:11.0-jre-bullseye
 VOLUME /tmp
 EXPOSE 8081
-COPY $PWD/app-sample-1.0.0-SNAPSHOT.jar app-sample.jar
+ADD /root/.m2/repository/unilab/app-sample/1.0.0-SNAPSHOT/app-sample-1.0.0-SNAPSHOT.jar app-sample.jar
 ENTRYPOINT ["java","-jar","app-sample.jar"]
