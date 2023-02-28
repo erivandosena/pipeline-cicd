@@ -42,6 +42,7 @@ pipeline {
     //SLACK_MESSAGE = "Pipeline <${env.JOB_DISPLAY_URL}|${env.JOB_NAME}> - <${env.RUN_DISPLAY_URL}|Build #${env.BUILD_NUMBER}>"
     // Altera o tempo limite do trabalho (o padrão é 1800 segundos; defina como 0 para desabilitar
     SEMGREP_TIMEOUT = "300"
+    SONAR_HOST_URL = "https://dti-sonar.unilab.edu.br"
   }
   stages {
     stage('CI/CD Initialize Setup') {
