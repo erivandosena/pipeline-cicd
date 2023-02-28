@@ -1,5 +1,4 @@
 package br.edu.unilab.app;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -13,8 +12,9 @@ import br.edu.unilab.app.Application;
 public class ApplicationTests {
 
 	@Test
-	public void contextLoads(ApplicationContext context) {
+	public void contextLoads() {
 		assertThat(context).isNotNull();
 	}
 
 }
+
