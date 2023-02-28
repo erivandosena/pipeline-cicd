@@ -63,7 +63,7 @@ pipeline {
         }
         // executar alguns comandos shell para configurar outros detalhes
         sh 'printenv'
-        sh 'apt-get install -y openssh-client'
+        sh 'apt-get update && apt-get install -y openssh-client'
       }
     }
     stage('Build') {
