@@ -65,6 +65,7 @@ pipeline {
         //sh 'ssh-keygen -t rsa -b 4096 -C "inbound-agent@noreply.unilab.edu.br" -f ~/.ssh/id_rsa -q -N ""'
         sh '[ -d ~/.ssh ] || mkdir -p ~/.ssh && cp -rfv pipeline/.ssh-inbound-agent/id_rsa.pub ~/.ssh/ && chmod -R 600 ~/.ssh'
         sh 'ls -la ~/.ssh/'
+        sh 'ls -la /var/jenkins_home/.ssh/'
         sh 'cat ~/.ssh/id_rsa.pub'
         sh 'printenv'
       }
