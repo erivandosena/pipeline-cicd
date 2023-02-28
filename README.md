@@ -5,7 +5,7 @@
 ### Back-end
 
 Projeto em [Spring Boot](https://github.com/spring-projects/spring-boot)  
-Para obter mais ajuda sobre o Spring Boot, confira o [Spring Boot framework](https://github.com/spring-projects/spring-boot/tree/spring-framework-next)
+Para obter mais ajuda sobre o Spring Boot, confira o [Spring Boot framework README](https://github.com/spring-projects/spring-boot/blob/spring-framework-next/README.adoc)
 
 ### Front-end
 Projeto em [Angular CLI](https://github.com/angular/angular-cli)   
