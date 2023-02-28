@@ -62,8 +62,8 @@ pipeline {
           workspace = "$env.WORKSPACE"
         }
         // executar alguns comandos shell para configurar outros detalhes
+        sh 'apt-get update && apt-get install -y openssh-client git'
         sh 'printenv'
-        sh 'apt-get update && apt-get install -y openssh-client'
       }
     }
     stage('Build') {
