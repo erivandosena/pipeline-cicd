@@ -3,5 +3,5 @@
 FROM openjdk:11.0-jre-bullseye
 VOLUME /tmp
 EXPOSE 8081
-ADD "${PWD}/spring-boot/target/app-sample-1.0.0-SNAPSHOT.jar" app-sample.jar
+ADD spring-boot/target/app-sample-1.0.0-SNAPSHOT.jar app-sample.jar
 ENTRYPOINT ["java","-jar","app-sample.jar"]
