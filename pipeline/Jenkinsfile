@@ -63,7 +63,7 @@ pipeline {
         }
         // executar alguns comandos shell para configurar outros detalhes
         sh 'printenv'
-        sh 'apt install -y scp'
+        sh 'apt-get install -y openssh-client'
       }
     }
     stage('Build') {
