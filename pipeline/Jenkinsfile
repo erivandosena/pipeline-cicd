@@ -54,6 +54,7 @@ pipeline {
           workspace = "$env.WORKSPACE"
         }
         // executar alguns comandos shell para configurar outros detalhes
+        sh 'ls -la .'
         container('maven') {
           sh 'apt-get update && apt-get install -y openssh-client openssh-server'
           // setup ssh inbound-agent
@@ -67,7 +68,6 @@ pipeline {
           sh 'cat ~/.ssh/id_rsa.pub'
           sh 'printenv'
         }
-        sh 'ls -la .'
       }
     }
     // geralmente não é necessário ao obter o Jenkinsfile do Git SCM no Pipeline / Multibranch Pipeline, isso está implícito
