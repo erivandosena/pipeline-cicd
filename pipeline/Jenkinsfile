@@ -89,7 +89,8 @@ pipeline {
           //sh 'rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
           //sh '$ mkdir -p $JENKINS_HOME/.ssh'
           //$ touch $JENKINS_HOME/.ssh/known_hosts
-          //sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
+          sh '[ -f /var/jenkins_home/.ssh/known_hosts ] || touch /var/jenkins_home/.ssh/known_hosts'
+          sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
           sh 'rsync -e "ssh -p 22" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
         }
       }
