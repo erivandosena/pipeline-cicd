@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>unilab</groupId>
-	<artifactId>app-sample</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>${env.APP_NAME}</artifactId>
+	<version>${env.APP_VERSION}-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>App Exemplo</name>
