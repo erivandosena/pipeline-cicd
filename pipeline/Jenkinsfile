@@ -73,7 +73,7 @@ pipeline {
         sh "mvn clean verify"
         */
         sh 'mvn clean -f spring-boot/'
-        sh 'mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:tree -f spring-boot/'
+        //sh 'mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:tree -f spring-boot/'
         sh "mvn -f spring-boot/ package -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
         //sh "mvn archetype:generate -DgroupId=br.edu.unilab.app -DartifactId=${APP_NAME} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
         sh 'ls -la ./'
