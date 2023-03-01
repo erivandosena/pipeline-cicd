@@ -85,7 +85,7 @@ pipeline {
         sh 'mvn package install -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/'
         //sh "mvn archetype:generate -DgroupId=br.edu.unilab.app -DartifactId=${APP_NAME} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION}"
         //sh 'scp -pqr spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
-        sshagent (credentials: ['ssh-inbound-agent']) {
+        sshagent (credentials: ['ssh-agent-root']) {
           //sh 'rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
           //sh 'mkdir -p /root/.ssh && touch /root/.ssh/known_hosts'
           //sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
