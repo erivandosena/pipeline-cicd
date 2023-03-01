@@ -7,15 +7,15 @@
           <div class="card-body">
             <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" *ngIf="profileForm">
               <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Nome:</label>
                 <input type="text" value={{user.name}} class="form-control" id="name" formControlName="name" aria-describedby="name">
               </div>
               <div class="form-group">
-                <label for="emaild">EmailId:</label>
+                <label for="emaild">E-mail:</label>
                 <input type="text" value={{user.email}} class="form-control" id="emailId" formControlName="emailId">
               </div>
               <div class="form-group">
-                <label for="blogContent">Age:</label>
+                <label for="blogContent">Telefone:</label>
                 <input type="text" value={{user.age}} class="form-control" id="age" formControlName="age" aria-describedby="age">
               </div>
               <br>
