@@ -87,10 +87,10 @@ pipeline {
         //sh 'scp -pqr spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
         sshagent (credentials: ['ssh-inbound-agent']) {
           //sh 'rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" --recursive -arPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar root@10.130.1.104:/tmp/'
-          sh 'mkdir -p /root/.ssh && touch /root/.ssh/known_hosts'
-          sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
-          sh 'ssh -T jenkins@10.130.1.104'
-          sh 'rsync -e "ssh -p 22" --recursive -arvPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar jenkins@10.130.1.104:/tmp/'
+          //sh 'mkdir -p /root/.ssh && touch /root/.ssh/known_hosts'
+          //sh 'ssh-keyscan -p 22 -4 -H 10.130.1.104 >> ~/.ssh/known_hosts'
+          sh 'ssh -T root@10.130.1.104'
+          //sh 'rsync -e "ssh -p 22" --recursive -arvPo spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar jenkins@10.130.1.104:/tmp/'
           //sh 'scp -pqr spring-boot/target/${APP_NAME}-${APP_VERSION}-SNAPSHOT.jar jenkins@10.130.1.104:/tmp/'
         }
       }
