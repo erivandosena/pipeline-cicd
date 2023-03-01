@@ -19,7 +19,7 @@ public class ContatoController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home() {
-		return "Cadastro de contatos";
+		return "Cadastro";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.PUT)
