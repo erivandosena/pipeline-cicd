@@ -35,7 +35,7 @@ spec:
         - containerPort: 80
           name: angular
         volumeMounts:
-        - name: tz-america
+        - name: tz-america-one
           mountPath: /etc/localtime
       # Spring Boot
       - name: <APP_NAME_TWO>
@@ -52,13 +52,8 @@ spec:
         - containerPort: 8081
           name: spring
         volumeMounts:
-        - name: tz-america
+        - name: tz-america-two
           mountPath: /etc/localtime
-      volumes:
-        - name: tz-america
-          hostPath:
-            path: /usr/share/zoneinfo/America/Fortaleza
-            type: File
       # MySQL
       - name: <APP_NAME_THREE>
         image: <IMAGE_TAG_THREE>
@@ -85,12 +80,20 @@ spec:
           - name: MYSQL_ROOT_HOST
             value: %
         volumeMounts:
-        - name: tz-america
+        - name: tz-america-three
           mountPath: /etc/localtime
         - name: mysql-data
           mountPath: /var/lib/mysql
       volumes:
-        - name: tz-america
+        - name: tz-america-one
+          hostPath:
+            path: /usr/share/zoneinfo/America/Fortaleza
+            type: File
+        - name: tz-america-two
+          hostPath:
+            path: /usr/share/zoneinfo/America/Fortaleza
+            type: File
+        - name: tz-america-three
           hostPath:
             path: /usr/share/zoneinfo/America/Fortaleza
             type: File
