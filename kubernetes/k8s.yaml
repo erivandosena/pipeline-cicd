@@ -62,11 +62,11 @@ spec:
         image: <IMAGE_TAG_THREE>
         resources:
           requests:
-            cpu: '0.5'
-            memory: 128Mi
+            memory: "128Mi"
+            cpu: "0.5"
           limits:
-            cpu: 1
-            memory: 1Gi
+            memory: "900Mi"
+            cpu: "1"
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
@@ -74,14 +74,12 @@ spec:
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: "DevOps2023"
-          - name: MYSQL_DATABASE
-            value: "crud"
-          - name: MYSQL_USER
-            value: "root"
           - name: MYSQL_PASSWORD
             value: "DevOps2023"
-          - name: MYSQL_ROOT_HOST
-            value: "%"
+          - name: MYSQL_USER
+            value: "admin"
+          - name: MYSQL_DATABASE
+            value: "crud"
         volumeMounts:
         - name: tz-america-three
           mountPath: /etc/localtime
