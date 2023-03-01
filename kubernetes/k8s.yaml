@@ -59,6 +59,28 @@ spec:
           hostPath:
             path: /usr/share/zoneinfo/America/Fortaleza
             type: File
+      # MySQL
+      - name: <APP_NAME_THREE>
+        image: <IMAGE_TAG_THREE>
+        resources:
+          requests:
+            cpu: '0.5'
+            memory: 128Mi
+          limits:
+            cpu: 1
+            memory: 1Gi
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: tz-america
+          mountPath: /etc/localtime
+      volumes:
+        - name: tz-america
+          hostPath:
+            path: /usr/share/zoneinfo/America/Fortaleza
+            type: File
   selector:
     matchLabels:
         app: <APP_NAME>
@@ -84,6 +106,10 @@ spec:
       port: 8081
       targetPort: 8081
       name: spring
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+      name: mysql
   type: LoadBalancer
   #loadBalancerIP: 10.130.x.x
   externalTrafficPolicy: Local
