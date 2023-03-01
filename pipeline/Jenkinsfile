@@ -115,7 +115,7 @@ pipeline {
         
         sh "sed -i 's/<IMAGE_TAG>/unlb\\/angular:${env.DOCKER_TAG}/' ./kubernetes/k8s.yaml"
         sh "sed -i 's/<IMAGE_TAG_TWO>/unlb\\/spring-boot:${env.DOCKER_TAG}/' ./kubernetes/k8s.yaml"
-        sh "sed -i 's/<IMAGE_TAG_THREE>/mysql\\/mysql-server:8.0/' ./kubernetes/k8s.yaml"
+        sh "sed -i 's/<IMAGE_TAG_THREE>/mysql\\/mysql/mysql-server:5.7/' ./kubernetes/k8s.yaml"
 
         sh 'cat ./kubernetes/k8s.yaml'
 
