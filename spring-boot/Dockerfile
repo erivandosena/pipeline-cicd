@@ -58,7 +58,7 @@ ENV APP_NAME "${NAME}-${APP_VERSION}-SNAPSHOT.jar"
 
 VOLUME /tmp
 
-EXPOSE 8081
+EXPOSE 8080
 
 ADD "target/${NAME}-${APP_VERSION}-SNAPSHOT.jar" /opt/app.jar
 
