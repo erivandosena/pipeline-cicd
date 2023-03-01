@@ -6,7 +6,7 @@
 #
 # Build instructions:
 #
-#   docker buildx build -t dti-registro.unilab.edu.br/unilab/angular:latest --build-arg 'COMMIT_SHA=$(git rev-parse --short HEAD) VERSION=1.0.0 BUILDKIT_INLINE_CACHE=1' --no-cache .
+#   docker buildx build -t dti-registro.unilab.edu.br/unilab/angular:latest --build-arg 'VERSION=1.0.0 COMMIT_SHA=$(git rev-parse --short HEAD)' --no-cache .
 #   docker push dti-registro.unilab.edu.br/unilab/angular:latest
 #
 # Usage:
