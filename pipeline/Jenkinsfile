@@ -74,7 +74,7 @@ pipeline {
         sh 'mvn clean -f spring-boot/'
         sh 'mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:tree -f spring-boot/'
         */
-        sh 'mvn package install -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/'
+        sh 'mvn package install -Xdebug -Dmaven.test.skip=true -Dmy.variable=${APP_NAME} -Dmy.variable=${APP_VERSION} -f spring-boot/'
       }
     }
     stage('Build Docker Image') {
