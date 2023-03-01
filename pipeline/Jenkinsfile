@@ -25,9 +25,9 @@ pipeline {
     cron('H 10 * * 1-5')  // executar às 10: XX:XX da manhã todos os dias da semana, ou seja. algum horário fixo de trabalho entre 10-11am
   }
   environment {
-    APP_NAME = "app-sample"
+    APP_NAME = "spring-boot"
     APP_VERSION = "1.0.0"
-    APP_NAMESPACE = "app-pipeline-cicd"
+    APP_NAMESPACE = "app-sample"
     //DOCKER_TAG = "$GIT_COMMIT" // ou "$GIT_BRANCH"
     DOCKER_TAG = "${env.GIT_BRANCH.split('/')[-1]}"  //retire a 'origin/' inicial de 'origin/branch'
     DOCKER_IMAGE = "unlb/${APP_NAME}"
@@ -104,7 +104,7 @@ pipeline {
           timeout(time: 60, unit: 'MINUTES') {
             // verificar se 'DOCKER_BUILDKIT = 1' está definido na seção environment {}
             sh "docker build -f spring-boot/Dockerfile -t '$DOCKER_IMAGE':'$DOCKER_TAG' --build-arg='NAME=$APP_NAME' --build-arg='VERSION=$APP_VERSION' --build-arg='COMMIT_SHA=$GIT_COMMIT' --build-arg='BUILDKIT_INLINE_CACHE=1' --cache-from '$DOCKER_IMAGE':'$DOCKER_TAG' spring-boot/"
-            sh "docker build -f angular/Dockerfile -t 'unlb/angular:'$DOCKER_TAG' --build-arg='BUILDKIT_INLINE_CACHE=1' --cache-from 'unlb/angular:'$DOCKER_TAG' angular/"
+            sh "docker build -f angular/Dockerfile -t 'unlb/angular:$DOCKER_TAG' --build-arg='BUILDKIT_INLINE_CACHE=1' --cache-from 'unlb/angular:$DOCKER_TAG' angular/"
           }
         }
       }
@@ -118,7 +118,7 @@ pipeline {
             milestone(ordinal: null, label: "Milestone: Docker Push")
             timeout(time: 15, unit: 'MINUTES') {
               sh "docker push '$DOCKER_IMAGE':'$DOCKER_TAG'"
-              sh "docker push 'unlb/angular:'$DOCKER_TAG'"
+              sh "docker push 'unlb/angular:$DOCKER_TAG'"
             }
           }
         }
