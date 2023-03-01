@@ -1,3 +1,7 @@
+# kubectl logs <POD-NAME> -c angular -n <NAME-SPACE>
+# kubectl logs <POD-NAME> -c spring-boot -n <NAME-SPACE>
+# kubectl logs <POD-NAME> -c mysql-server -n <NAME-SPACE>
+
 apiVersion: v1
 kind: Namespace
 metadata:
