@@ -41,7 +41,12 @@ RUN apt-get update && apt-get upgrade -y \
     iputils-ping \
     lsb-release \
     locales
-
+    
+RUN apt-get install -y software-properties-common npm
+RUN npm install npm@latest -g && \
+    npm install n -g && \
+    n latest
+    
 ARG VERSION
 ARG COMMIT_SHA
 ENV TZ America/Fortaleza
@@ -52,7 +57,17 @@ ENV LANGUAGE pt_BR:pt:en
 RUN locale-gen pt_BR.UTF-8 
 RUN dpkg-reconfigure locales tzdata -f noninteractive
 
-COPY dist/crud/ /usr/share/nginx/html
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY src/ .
+
+RUN ng build
+
+COPY --from=build /app/dist/crud/ /usr/share/nginx/html
+
+#COPY dist/crud/ /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 
 LABEL \
@@ -67,3 +82,4 @@ LABEL \
     org.opencontainers.image.author="Erivando Sena<erivandoramos@unilab.edu.br>" \
     org.opencontainers.image.company="Universidade da Integração Internacional da Lusofonia Afro-Brasileira (UNILAB)" \
     org.opencontainers.image.maintainer="DTI/Unilab"
+    
