@@ -107,10 +107,11 @@ pipeline {
     stage('Deploy') {
       steps {
         sh "sed -i 's/<APP_NAMESPACE>/${env.APP_NAMESPACE}/' ./kubernetes/k8s.yaml"
+        sh "sed -i 's/<APP_NAME>/${env.APP_NAME}/' ./kubernetes/k8s.yaml"
         
-        sh "sed -i 's/<APP_NAME>/angular/' ./kubernetes/k8s.yaml"
-        sh "sed -i 's/<APP_NAME_TWO>/spring-boot/' ./kubernetes/k8s.yaml"
-        sh "sed -i 's/<APP_NAME_THREE>/mysql-server/' ./kubernetes/k8s.yaml"
+        sh "sed -i 's/<CONTAINER_NAME_ONE>/angular/' ./kubernetes/k8s.yaml"
+        sh "sed -i 's/<CONTAINER_NAME_TWO>/spring-boot/' ./kubernetes/k8s.yaml"
+        sh "sed -i 's/<CONTAINER_NAME_THREE>/mysql-server/' ./kubernetes/k8s.yaml"
         
         sh "sed -i 's/<IMAGE_TAG>/unlb\\/angular:${env.DOCKER_TAG}/' ./kubernetes/k8s.yaml"
         sh "sed -i 's/<IMAGE_TAG_TWO>/unlb\\/spring-boot:${env.DOCKER_TAG}/' ./kubernetes/k8s.yaml"
