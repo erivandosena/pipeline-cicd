@@ -73,14 +73,29 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: DevOps2023
+          - name: MYSQL_DATABASE
+            value: crud
+          - name: MYSQL_USER
+            value: root
+          - name: MYSQL_PASSWORD
+            value: DevOps2023
+          - name: MYSQL_ROOT_HOST
+            value: %
         volumeMounts:
         - name: tz-america
           mountPath: /etc/localtime
+        - name: mysql-data
+          mountPath: /var/lib/mysql
       volumes:
         - name: tz-america
           hostPath:
             path: /usr/share/zoneinfo/America/Fortaleza
             type: File
+        - name: mysql-data
+          emptyDir: {}
   selector:
     matchLabels:
         app: <APP_NAME>
