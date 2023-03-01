@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       # Angular
-      - name: <APP_NAME>
+      - name: <CONTAINER_NAME_ONE>
         image: <IMAGE_TAG>
         # resources:
         #   requests: {}
@@ -41,7 +41,7 @@ spec:
         - name: tz-america-one
           mountPath: /etc/localtime
       # Spring Boot
-      - name: <APP_NAME_TWO>
+      - name: <CONTAINER_NAME_TWO>
         image: <IMAGE_TAG_TWO>
         resources:
           requests:
@@ -58,7 +58,7 @@ spec:
         - name: tz-america-two
           mountPath: /etc/localtime
       # MySQL
-      - name: <APP_NAME_THREE>
+      - name: <CONTAINER_NAME_THREE>
         image: <IMAGE_TAG_THREE>
         resources:
           requests:
