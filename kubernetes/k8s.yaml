@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: <APP_NAMESPACE>
-
+  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -70,15 +70,15 @@ spec:
           name: mysql
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: DevOps2023
+            value: "DevOps2023"
           - name: MYSQL_DATABASE
-            value: crud
+            value: "crud"
           - name: MYSQL_USER
-            value: root
+            value: "root"
           - name: MYSQL_PASSWORD
-            value: DevOps2023
+            value: "DevOps2023"
           - name: MYSQL_ROOT_HOST
-            value: %
+            value: "%"
         volumeMounts:
         - name: tz-america-three
           mountPath: /etc/localtime
