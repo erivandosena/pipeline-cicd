@@ -62,7 +62,7 @@ spec:
       targetPort: 80
       name: http
   type: LoadBalancer
-  #loadBalancerIP: 10.130.1.x
+  #loadBalancerIP: 10.130.x.x
   externalTrafficPolicy: Local
 
 ---
