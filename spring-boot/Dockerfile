@@ -1,19 +1,19 @@
-# Dockerfile for sample-app (backend) Spring Boot
+# Dockerfile for app-sample (backend) Spring Boot
 #
 # Maintainer: Erivando Sena <erivandoramos@unilab.edu.br>
 #
-# Description: Este Dockerfile cria uma imagem para sample-app, um aplicativo da Web escrito em Java.
+# Description: Este Dockerfile cria uma imagem para app-sample, um aplicativo da Web escrito em Java.
 #
 # Build instructions:
 #
-#   docker buildx build -t dti-registro.unilab.edu.br/unilab/sample-app --build-arg 'COMMIT_SHA=$(git rev-parse --short HEAD) NAME=app-sample VERSION=1.0.0 BUILDKIT_INLINE_CACHE=1' --no-cache .
-#   docker push dti-registro.unilab.edu.br/unilab/sample-app
+#   docker buildx build -t dti-registro.unilab.edu.br/unilab/spring-boot --build-arg 'COMMIT_SHA=$(git rev-parse --short HEAD) NAME=app-sample VERSION=1.0.0 BUILDKIT_INLINE_CACHE=1' --no-cache .
+#   docker push dti-registro.unilab.edu.br/unilab/spring-boot
 #
 # Usage:
 #
-#   docker run -it --rm -d -p 80:8081 --name sample-app dti-registro.unilab.edu.br/unilab/sample-app
-#   docker logs -f --tail --until=2s sample-app
-#   docker exec -it sample-app bash
+#   docker run -it --rm -d -p 80:8081 --name app-sample dti-registro.unilab.edu.br/unilab/spring-boot
+#   docker logs -f --tail --until=2s app-sample
+#   docker exec -it app-sample bash
 #
 # Dependencies: openjdk:11.0-jre-bullseye
 #
@@ -28,8 +28,6 @@
 # - O aplicativo pode ser acessado em um navegador da Web em https://hello-world-test.unilab.edu.br/
 #
 # Version: 1.0
-
-# Dockerfile para Spring Boot - backend
 
 FROM openjdk:11.0-jre-bullseye
 
@@ -67,7 +65,7 @@ ADD "target/${NAME}-${APP_VERSION}-SNAPSHOT.jar" /opt/app.jar
 LABEL \
     org.opencontainers.image.vendor="Divisão de Infraestrutura, Segurança da Informação e Redes" \
     org.opencontainers.image.title="Exemplo de Microsserviço de Aplicação em container Docker Linux" \
-    org.opencontainers.image.description="sample-app é um software Java usado para demostrar aplicativos conteinerizados." \
+    org.opencontainers.image.description="app-sample é um software Java usado para demostrar aplicativos conteinerizados." \
     org.opencontainers.image.version="${VERSION}" \
     org.opencontainers.image.url="https://hello-world-test.unilab.edu.br/" \
     org.opencontainers.image.source="https://github.com/erivandosena/pipeline-cicd" \
