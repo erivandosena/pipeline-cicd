@@ -138,9 +138,7 @@ pipeline {
           script {
             try {
                 sh "kubectl get deployment $APP_NAME -n $APP_NAMESPACE >/dev/null 2>&1"
-                sh if ("kubectl get pods -l app=$APP_NAME -n $APP_NAMESPACE --no-headers | wc -l" > 0) {
-                    sh "kubectl delete pods -l app=$APP_NAME -n $APP_NAMESPACE --force --grace-period=0"
-                }
+                sh 'if ("kubectl get pods -l app=$APP_NAME -n $APP_NAMESPACE --no-headers | wc -l" > 0) {"kubectl delete pods -l app=$APP_NAME -n $APP_NAMESPACE --force --grace-period=0"}'
                 sh "kubectl delete deployment $APP_NAME -n $APP_NAMESPACE"
                 echo "O deployment $APP_NAME existente foi excluído e será recriado."
             } catch (err) {
