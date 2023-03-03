@@ -6,7 +6,7 @@
 #
 # Build instructions:
 #
-#   docker buildx build -t dti-registro.unilab.edu.br/unilab/angular:latest --build-arg 'VERSION=1.0.0 COMMIT_SHA=$(git rev-parse --short HEAD)' --no-cache .
+#   docker build -t dti-registro.unilab.edu.br/unilab/angular:latest --build-arg 'VERSION=1.0.0 COMMIT_SHA=$(git rev-parse --short HEAD)' --no-cache .
 #   docker push dti-registro.unilab.edu.br/unilab/angular:latest
 #
 # Usage:
@@ -31,7 +31,7 @@
 
 FROM nginx:latest
 
-ENV DEBIAN_FRONTEND noninteractive
+#ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade -y \
   && apt-get autoremove -y \
@@ -40,13 +40,17 @@ RUN apt-get update && apt-get upgrade -y \
     telnet \
     iputils-ping \
     lsb-release \
-    locales
-    
-RUN apt-get install -y software-properties-common npm
-RUN npm install npm@latest -g && \
-    npm install n -g && \
-    n latest
-    
+    locales \
+    git
+
+# Install Node.js and NPM
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Angular CLI
+RUN npm install -g @angular/cli
+
 ARG VERSION
 ARG COMMIT_SHA
 ENV TZ America/Fortaleza
@@ -57,18 +61,24 @@ ENV LANGUAGE pt_BR:pt:en
 RUN locale-gen pt_BR.UTF-8 
 RUN dpkg-reconfigure locales tzdata -f noninteractive
 
-RUN mkdir /app
+# Create new Angular project
+# RUN ng new crud --routing --style scss --skip-git
 
-WORKDIR /app
+# Or use exists Angular project
+COPY . app 
 
-COPY src/ .
+WORKDIR app
 
-RUN ng build
+RUN ng config -g cli.warnings.versionMismatch false
+RUN npm cache clean --force && npm update && npm install
+RUN ng build --configuration production --aot --progress --output-path ./dist/
 
-COPY --from=build /app/dist/crud/ /usr/share/nginx/html
+# Copy Angular app and default Nginx configuration
+RUN cp -rfv dist/ /usr/share/nginx/html && \
+	cp nginx.conf /etc/nginx/nginx.conf && \
+	rm nginx.conf
 
-#COPY dist/crud/ /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80
 
 LABEL \
     org.opencontainers.image.vendor="Divisão de Infraestrutura, Segurança da Informação e Redes" \
@@ -82,4 +92,3 @@ LABEL \
     org.opencontainers.image.author="Erivando Sena<erivandoramos@unilab.edu.br>" \
     org.opencontainers.image.company="Universidade da Integração Internacional da Lusofonia Afro-Brasileira (UNILAB)" \
     org.opencontainers.image.maintainer="DTI/Unilab"
-    
